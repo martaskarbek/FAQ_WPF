@@ -25,55 +25,61 @@
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </StackPanel.OpacityMask>
-        <GroupBox Margin="20" Foreground="#FF7D3478">
-            <GroupBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFC792CE" Offset="0"/>
-                    <GradientStop Color="#FFFAFFE5" Offset="1"/>
-                </LinearGradientBrush>
-            </GroupBox.Background>
-            <GroupBox.Header>
-                <Bold>
-                    How much do You play on computer
-                </Bold>
-            </GroupBox.Header>
-            <StackPanel Margin="10">
-                <RadioButton>none</RadioButton>
-                <RadioButton>1-3h</RadioButton>
-                <RadioButton>3-6h</RadioButton>
-                <RadioButton>24h/7</RadioButton>
-            </StackPanel>
-        </GroupBox>
-        <GroupBox Margin="20" Foreground="#FF7D3478">
-            <GroupBox.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFC792CE" Offset="0"/>
-                    <GradientStop Color="#FFFAFFE5" Offset="1"/>
-                </LinearGradientBrush>
-            </GroupBox.Background>
-            <GroupBox.Header>
-                <Bold>
-                    How much do You sleep
-                </Bold>
-            </GroupBox.Header>
-            <StackPanel Margin="10">
-                <RadioButton>none</RadioButton>
-                <RadioButton>1-3h</RadioButton>
-                <RadioButton>3-6h</RadioButton>
-                <RadioButton x:Name="more">
-                    <WrapPanel x:Name="test" Width="150">
-                        <Label>More:</Label>
-                        <!--it is working when ischecked what means can not be edit if this 
+        <ToggleButton x:Name="toggleQuestionsBox" IsChecked="{Binding ElementName=questionsBox, Path=IsOpen}">Show questions</ToggleButton>
+        <Popup x:Name="questionsBox" AllowsTransparency="True" PlacementTarget="{Binding ElementName=toggleQuestionsBox}" Placement="Bottom">
+            <StackPanel>
+               
+                <GroupBox Margin="20" Foreground="#FF7D3478">
+                    <GroupBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFC792CE" Offset="0"/>
+                            <GradientStop Color="#FFFAFFE5" Offset="1"/>
+                        </LinearGradientBrush>
+                    </GroupBox.Background>
+                    <GroupBox.Header>
+                        <Bold>
+                            How much do You play on computer
+                        </Bold>
+                    </GroupBox.Header>
+                    <StackPanel Margin="10">
+                        <RadioButton>none</RadioButton>
+                        <RadioButton>1-3h</RadioButton>
+                        <RadioButton>3-6h</RadioButton>
+                        <RadioButton>24h/7</RadioButton>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Margin="20" Foreground="#FF7D3478">
+                    <GroupBox.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFC792CE" Offset="0"/>
+                            <GradientStop Color="#FFFAFFE5" Offset="1"/>
+                        </LinearGradientBrush>
+                    </GroupBox.Background>
+                    <GroupBox.Header>
+                        <Bold>
+                            How much do You sleep
+                        </Bold>
+                    </GroupBox.Header>
+                    <StackPanel Margin="10">
+                        <RadioButton>none</RadioButton>
+                        <RadioButton>1-3h</RadioButton>
+                        <RadioButton>3-6h</RadioButton>
+                        <RadioButton x:Name="more">
+                            <WrapPanel x:Name="test" Width="150">
+                                <Label>More:</Label>
+                                <!--it is working when ischecked what means can not be edit if this 
                         field is not choosen, popup has position to parent-->
-                        <Popup IsOpen="{Binding ElementName=more, Path=IsChecked}"
+                                <Popup IsOpen="{Binding ElementName=more, Path=IsChecked}"
                                PlacementTarget="{Binding ElementName=test}"
                                VerticalOffset="50" Placement="Left"
                                PopupAnimation="Scroll" AllowsTransparency="True">
-                            <TextBox MinWidth="50"></TextBox>
-                        </Popup>
-                    </WrapPanel>
-                </RadioButton>
+                                    <TextBox MinWidth="50"></TextBox>
+                                </Popup>
+                            </WrapPanel>
+                        </RadioButton>
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
-        </GroupBox>
+        </Popup>
     </StackPanel>
 </Window>
