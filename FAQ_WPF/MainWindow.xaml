@@ -14,15 +14,26 @@
         </LinearGradientBrush>
     </Window.Background>
     <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type ToggleButton}" x:Key="onOffToggleButton">
+                <Setter  Property="Content" Value="On" />
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Content" Value="Off" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </StackPanel.Resources>
+        <ToggleButton Style="{StaticResource onOffToggleButton}" />
         <ToggleButton x:Name="toggleQuestionsBox" IsChecked="{Binding ElementName=questionsBox, Path=IsOpen}">
             <ToggleButton.Style>
                 <Style TargetType="{x:Type ToggleButton}">
+                    <Setter Property="FontSize" Value="25" />
+                    <Setter Property="Content" Value="Show questions" />
                     <Style.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Content" Value="Hide questions" />
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="False">
-                            <Setter Property="Content" Value="Show questions" />
+                            <Setter Property="FontWeight" Value="Bold" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -32,7 +43,7 @@
             <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type GroupBox}" x:Key="headerStyle">
-                        <Setter Property="Foreground" Value="DarkBlue"></Setter>
+                        <Setter Property="Foreground" Value="#FF5B0D69"></Setter>
                         <Setter Property="HeaderTemplate">
                             <Setter.Value>
                                 <DataTemplate>
