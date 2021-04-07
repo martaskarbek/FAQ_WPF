@@ -5,14 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FAQ_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Foreground="#FFF15BE7"
+        Title="MainWindow" Height="450" Width="800"
         x:Name="window">
-    <Window.OpacityMask>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF523E4C" Offset="0"/>
-            <GradientStop Color="White" Offset="1"/>
-        </LinearGradientBrush>
-    </Window.OpacityMask>
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FFF6A6DF" Offset="0"/>
@@ -20,7 +14,20 @@
         </LinearGradientBrush>
     </Window.Background>
     <StackPanel>
-        <ToggleButton x:Name="toggleQuestionsBox" IsChecked="{Binding ElementName=questionsBox, Path=IsOpen}">Show questions</ToggleButton>
+        <ToggleButton x:Name="toggleQuestionsBox" IsChecked="{Binding ElementName=questionsBox, Path=IsOpen}">
+            <ToggleButton.Style>
+                <Style TargetType="{x:Type ToggleButton}">
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content" Value="Hide questions" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Content" Value="Show questions" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
         <Popup x:Name="questionsBox" HorizontalOffset="-90" AllowsTransparency="True" PlacementTarget="{Binding ElementName=toggleQuestionsBox}" PopupAnimation="Fade" Width="600">
             <StackPanel>
                 <StackPanel.Resources>
@@ -36,13 +43,13 @@
                     </Style>
                 </StackPanel.Resources>
                 <GroupBox Margin="20" MinWidth="300" Header="How much do You play on computer?" Style="{StaticResource headerStyle}">
-                    <StackPanel Margin="10">
-                            <RadioButton>none</RadioButton>
-                            <RadioButton>1-3h</RadioButton>
-                            <RadioButton>3-6h</RadioButton>
-                            <RadioButton>24h/7</RadioButton>
-                        </StackPanel>
-                    </GroupBox>
+                <StackPanel Margin="10">
+                        <RadioButton>none</RadioButton>
+                        <RadioButton>1-3h</RadioButton>
+                        <RadioButton>3-6h</RadioButton>
+                        <RadioButton>24h/7</RadioButton>
+                    </StackPanel>
+                </GroupBox>
                 <GroupBox Margin="20" Header="How much do You sleep" Style="{StaticResource headerStyle}">
                     <StackPanel Margin="10">
                         <RadioButton>none</RadioButton>
