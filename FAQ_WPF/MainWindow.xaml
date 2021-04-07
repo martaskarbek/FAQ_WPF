@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FAQ_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Foreground="#FFF15BE7">
+        Title="MainWindow" Height="450" Width="800" Foreground="#FFF15BE7"
+        x:Name="window">
     <Window.OpacityMask>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF523E4C" Offset="0"/>
@@ -19,47 +20,42 @@
         </LinearGradientBrush>
     </Window.Background>
     <StackPanel>
-        <StackPanel.OpacityMask>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0"/>
-                <GradientStop Color="White" Offset="1"/>
-            </LinearGradientBrush>
-        </StackPanel.OpacityMask>
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type GroupBox}" x:Key="headerStyle">
+                <Setter Property="Foreground" Value="#FF7D3478"></Setter>
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontWeight="Bold"></TextBlock>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </StackPanel.Resources>
         <ToggleButton x:Name="toggleQuestionsBox" IsChecked="{Binding ElementName=questionsBox, Path=IsOpen}">Show questions</ToggleButton>
-        <Popup x:Name="questionsBox" AllowsTransparency="True" PlacementTarget="{Binding ElementName=toggleQuestionsBox}" Placement="Bottom">
+        <Popup x:Name="questionsBox" HorizontalOffset="-90" AllowsTransparency="True" PlacementTarget="{Binding ElementName=toggleQuestionsBox}" PopupAnimation="Fade" Width="600">
             <StackPanel>
-               
-                <GroupBox Margin="20" Foreground="#FF7D3478">
+                <GroupBox Margin="20" MinWidth="300" Header="How much do You play on computer?">
                     <GroupBox.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFC792CE" Offset="0"/>
                             <GradientStop Color="#FFFAFFE5" Offset="1"/>
                         </LinearGradientBrush>
                     </GroupBox.Background>
-                    <GroupBox.Header>
-                        <Bold>
-                            How much do You play on computer
-                        </Bold>
-                    </GroupBox.Header>
                     <StackPanel Margin="10">
-                        <RadioButton>none</RadioButton>
-                        <RadioButton>1-3h</RadioButton>
-                        <RadioButton>3-6h</RadioButton>
-                        <RadioButton>24h/7</RadioButton>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Margin="20" Foreground="#FF7D3478">
+                            <RadioButton>none</RadioButton>
+                            <RadioButton>1-3h</RadioButton>
+                            <RadioButton>3-6h</RadioButton>
+                            <RadioButton>24h/7</RadioButton>
+                        </StackPanel>
+                    </GroupBox>
+                <GroupBox Margin="20" Header="How much do You sleep">
                     <GroupBox.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFC792CE" Offset="0"/>
                             <GradientStop Color="#FFFAFFE5" Offset="1"/>
                         </LinearGradientBrush>
                     </GroupBox.Background>
-                    <GroupBox.Header>
-                        <Bold>
-                            How much do You sleep
-                        </Bold>
-                    </GroupBox.Header>
                     <StackPanel Margin="10">
                         <RadioButton>none</RadioButton>
                         <RadioButton>1-3h</RadioButton>
@@ -78,7 +74,7 @@
                             </WrapPanel>
                         </RadioButton>
                     </StackPanel>
-                </GroupBox>
+                        </GroupBox>
             </StackPanel>
         </Popup>
     </StackPanel>
